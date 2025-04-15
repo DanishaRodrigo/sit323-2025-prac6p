@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.log(err));
 
@@ -29,5 +29,10 @@ app.post("/tasks", async (req, res) => {
     await task.save();
     res.json(task);
 });
+
+app.get('/', (req, res) => {
+    res.send('Hello World');
+  });
+  
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
